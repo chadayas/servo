@@ -7,7 +7,8 @@ void app_main(void)
 	s_cfg.min_width_us = 500;
 	s_cfg.max_width_us = 2500;
 	s_cfg.timer_number = LEDC_TIMER_0;
-
+	s_cfg.channel_number = LEDC_CHANNEL_0;
+	s_cfg.gpio_num = GPIO_NUM_14;
 
 
 }
