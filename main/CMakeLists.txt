@@ -1,2 +1,3 @@
-idf_component_register(SRCS "servo.c"
-                    INCLUDE_DIRS ".")
+idf_component_register(SRCS "servo.cpp"
+                    INCLUDE_DIRS "."
+	    		REQUIRES driver servo)
