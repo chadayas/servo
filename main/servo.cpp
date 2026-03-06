@@ -4,8 +4,8 @@
 #include "esp_err.h"
 #include "iot_servo.h"
 #include "esp_log.h"
-
-
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 
 
@@ -28,4 +28,9 @@ extern "C" void app_main(void)
 	iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
 
 	iot_servo_read_angle(LEDC_LOW_SPEED_MODE, 0, &angle);
+	
+	while(1){
+		vTaskDelay(1000/ portTICK_PERIOD_MS);
+	}
+
 }
