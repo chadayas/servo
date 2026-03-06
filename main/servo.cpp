@@ -7,7 +7,6 @@
 
 
 
-#define ANGLE  120.0f
 
 
 extern "C" void app_main(void)
@@ -22,8 +21,11 @@ extern "C" void app_main(void)
 	s_cfg.channels.servo_pin[0] = GPIO_NUM_14;
 	s_cfg.channels.ch[0] = LEDC_CHANNEL_0;
 	
-	iot_servo_init(LEDC_LOW_SPEED_MODE, &s_cfg) 
-	iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, ANGLE);
+	float angle  = 120.0;
 
-	iot_servo_read_angle(LEDC_LOW_SPEED_MODE, 0, &ANGLE);
+
+	iot_servo_init(LEDC_LOW_SPEED_MODE, &s_cfg); 
+	iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
+
+	iot_servo_read_angle(LEDC_LOW_SPEED_MODE, 0, &angle);
 }
