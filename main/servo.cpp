@@ -27,10 +27,15 @@ extern "C" void app_main(void)
 	iot_servo_init(LEDC_LOW_SPEED_MODE, &s_cfg); 
 	iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
 
-	iot_servo_read_angle(LEDC_LOW_SPEED_MODE, 0, &angle);
-	
+	auto tag = "[--ANGLE--]"	
 	while(1){
-		vTaskDelay(1000/ portTICK_PERIOD_MS);
+		for(int angle = 0; angle <= 200; angle++){
+			iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle );
+			if (iot_servo_read_angle(LEDC_LOW_SPEED_MODE, 0, &angle) == ESP_OK){
+				ESP_LOGI(tag,": %.1f", angle);	
+			}
+			vTaskDelay(100/ portTICK_PERIOD_MS);
+		}	
 	}
 
 }
