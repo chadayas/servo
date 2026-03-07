@@ -27,7 +27,7 @@ extern "C" void app_main(void)
 	iot_servo_init(LEDC_LOW_SPEED_MODE, &s_cfg); 
 	iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
 
-	auto tag = "[--ANGLE--]"	
+	auto tag = "[--ANGLE--]";	
 	while(1){
 		for(int angle = 0; angle <= 200; angle++){
 			iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle );
