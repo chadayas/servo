@@ -27,22 +27,23 @@ extern "C" void app_main(void)
 	while(1){
 		char ch = getchar();
 		if (ch == 27){
-			auto tag = "[INCREASE ANGLE]";		
-			angle += 1.0;
-			iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
-			ESP_LOGI(tag, " %.1f", angle);	
-			} 
-		if(ch == 26){
-			auto tag = "[DECREASE ANGLE]";	
-			angle = angle - 1.0;
-			if (angle < 0.0f) angle = 0.0;	
-			iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
-			ESP_LOGI(tag, " %.1f", angle);	
-			}	
-		vTaskDelay(10/ portTICK_PERIOD_MS);
-
-
-			
+			getchar();
+			int arrow = getchar();
+			if (arrow == 68){
+				auto tag = "[INCREASE ANGLE]";		
+				angle += 1.0;
+				if (angle >270.0f) angle = 270.f;
+				iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
+				ESP_LOGI(tag, " %.1f", angle);	
+			} else if (arrow == 67){
+				auto tag = "[DECREASE ANGLE]";	
+				angle = angle - 1.0;
+				if (angle < 0.0f) angle = 0.0;	
+				iot_servo_write_angle(LEDC_LOW_SPEED_MODE, 0, angle);
+				ESP_LOGI(tag, " %.1f", angle);	
+			}
+		}
+		vTaskDelay(10 / portTICK_PERIOD_MS);
 	}
 
 }
