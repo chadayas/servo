@@ -2,3 +2,5 @@ build/
 sdkconfig/
 sdkcongfig
 sdkconfig
+dependencies.lock
+managed_components
